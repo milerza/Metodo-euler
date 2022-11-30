@@ -1,2 +1,2 @@
 Compilar:
-gcc -o main main.c -lconio -lncurses 
+gcc -o main main.c -lm
