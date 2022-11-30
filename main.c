@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+//#include <conio.h>
 #include <math.h>
 
 #define f(x, y) x + y
@@ -15,36 +15,36 @@ double U0(double psi){
 int main(){
     double t_0, gama_0, t_n, c, gama_n, dt, u, psi;
     int i, n;
-    clrscr();
+    //clrscr();
     printf("Condições iniciais\n");
     printf("t_0 = ");
-    scanf("%d", &t_0);
+    scanf("%lf", &t_0);
     printf("gama_0 = ");
-    scanf("%d", &gama_0);
+    scanf("%lf", &gama_0);
     printf("Digite o tempo final t_n = ");
-    scanf("%d", &t_n);
+    scanf("%lf", &t_n);
     printf("Quantidade de iteracoes: ");
-    scanf("%i", &n);
+    scanf("%d", &n);
 
     /* Calculating step size (h) */
     dt = (t_n-t_0)/n;
 
     /* Euler's Method */
-    printf("\nt_0\tgama_0\tdt\tgama_n\tu\n");
+    printf("\nt\tgama_n\tu\tdt = %.4f \n", dt);
     printf("------------------------------\n");
     for(i=0; i < n; i++){
         c = C(gama_0);
         gama_n = gama_0 + c * dt;
-        psi = gama_n * exp(-2*t_n);
+        psi = gama_n * exp(-2.0*t_0);
         u = U0(psi);
-        printf("%.4f\t%.4f\t%0.4f\t%.4f\t%.4f\n",t_0,gama_0,dt,gama_n, u);
+        printf("%.4f\t%.4f\t%.4f\n",t_0,gama_n, u);
         gama_0 = gama_n;
-        t_0 = t_0 + c;
+        t_0 = t_0 + dt;
     }
 
     /* Displaying result */
     printf("\nValue of gama at t = %0.2f is %0.3f",t_n, gama_n);
 
-    getch();
+    //getch();
     return 0;
 }
